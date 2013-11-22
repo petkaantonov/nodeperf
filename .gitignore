@@ -1,0 +1,6 @@
+node_modules/*
+todo.txt
+npm-debug.log
+nodeperf.sublime-project
+nodeperf.sublime-workspace
+nodex64.exe
