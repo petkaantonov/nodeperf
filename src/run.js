@@ -19,9 +19,7 @@ var flags = [
     //"--trace_normalization",
     "--trace_generalization",
     "--trace_gc",
-    "--trace_array_abuse",
-    "--prepare_always_opt",
-    "--always_opt"
+    "--trace_array_abuse"
 ];
 
 var args = process.argv.slice(1);

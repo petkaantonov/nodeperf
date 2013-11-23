@@ -3,14 +3,14 @@ var inherits = require("../util.js").inherits;
 var Pass = require("../pass.js");
 var DisabledOptimization = require("../issues/disabled_optimization.js");
 
-function OptimizationBlocker() {
+function UnoptimizableFunctions() {
     this.constructor$();
     this.linePattern = /^\[disabled optimization for [a-zA-Z0-9]{1,16} <SharedFunctionInfo ([^>]*)>, reason: ([^\]]+)\]$/;
 }
-inherits(OptimizationBlocker, Pass);
-module.exports = OptimizationBlocker;
+inherits(UnoptimizableFunctions, Pass);
+module.exports = UnoptimizableFunctions;
 
-OptimizationBlocker.prototype.do = function OptimizationBlocker$do(line, analysis) {
+UnoptimizableFunctions.prototype.do = function UnoptimizableFunctions$do(line, analysis) {
     var result = this.linePattern.exec(line);
 
     if (result == null) {
