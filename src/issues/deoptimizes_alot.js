@@ -23,7 +23,8 @@ DeoptimizationReason.prototype.toString = function DeoptimizationReason$toString
         throw new Error("unmapped instruction name: " + this.instructionName);
     }
 
-    return "An assumption failed: " + mapped + " At bailout position " + this.bailoutId;
+    return "At bailout position " + this.bailoutId +
+            " an assumption failed: " + mapped;
 };
 
 DeoptimizationReason.equals = function(a, b) {

@@ -16,6 +16,21 @@ Analysis.prototype.getOutput = function Analysis$getOutput() {
 };
 
 Analysis.prototype.print = function Analysis$print() {
+    var stats = require("./passes/optimization.js").stats();
+
+    if (stats.totalOptimization === 0) {
+        console.log("Not a single function was optimized. This is likely because the program didn't do enough work.");
+        return;
+    }
+
+    //%f is not recognized?
+    var secondsFormatted = (stats.totalTime / 1000).toFixed(2);
+    console.log("In total %d (%d unique) optimizations were done taking " + secondsFormatted +
+        " seconds of compiler time.\n",
+        stats.totalOptimizations,
+        stats.totalUniqueOptimizations
+    );
+
     //Eventually move to a consumable JSON format and use this as a default reporter
     console.log("Found %d issues.\n", this.issues.length);
     var issueMap = Issue.map();
