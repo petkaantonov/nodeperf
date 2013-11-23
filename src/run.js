@@ -37,7 +37,7 @@ var p = spawn(process.execPath, newArgs);
 var analysis = new Analysis(passes);
 p.stderr.pipe(process.stderr);
 p.stdout.pipe(split()).pipe(through(function(line) {
-    analysis.add(line);
+    analysis.addLine(line);
 }));
 
 p.stdout.on("close", function() {

@@ -16,6 +16,7 @@ Analysis.prototype.getOutput = function Analysis$getOutput() {
 };
 
 Analysis.prototype.print = function Analysis$print() {
+    //Eventually move to a consumable JSON format and use this as a default reporter
     var stats = require("./passes/optimization.js").stats();
 
     if (stats.totalOptimization === 0) {
@@ -30,8 +31,6 @@ Analysis.prototype.print = function Analysis$print() {
         stats.totalOptimizations,
         stats.totalUniqueOptimizations
     );
-
-    //Eventually move to a consumable JSON format and use this as a default reporter
     console.log("Found %d issues.\n", this.issues.length);
     var issueMap = Issue.map();
     for (var i = 0, len = this.issues.length; i < len; ++i) {
@@ -44,9 +43,20 @@ Analysis.prototype.print = function Analysis$print() {
         issues.sort(function(a, b) {
             return a.typeIndex() - b.typeIndex();
         });
-        for (var i = 0, len = issues.length; i < len; ++i) {
+        if (!issues.length) {
+            continue;
+        }
+        var first = issues[0];
+        first.beforeOutput(this);
+        console.log("    - " + first );
+        var typeIndex = first.typeIndex();
+        for (var i = 1, len = issues.length; i < len; ++i) {
+            if (issues[i].typeIndex() !== typeIndex ) {
+                console.log("");
+            }
             issues[i].beforeOutput(this);
             console.log("    - " + issues[i] );
+            typeIndex = issues[i].typeIndex();
         }
         console.log("");
     }
@@ -70,7 +80,7 @@ Analysis.prototype.doNonConsumptive = function Analysis$doNonConsumptive(line) {
     }
 };
 
-Analysis.prototype.add = function Analysis$add(line) {
+Analysis.prototype.addLine = function Analysis$add(line) {
     this.output += (line + "\n");
     this.doNonConsumptive(line);
     if (this.waitingLines) {

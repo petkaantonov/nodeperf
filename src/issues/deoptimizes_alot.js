@@ -156,10 +156,13 @@ DeoptimizesAlot.prototype.toString = function DeoptimizesAlot$toString() {
         var out = "        " + (i + 1) +". ";
         var reason = this.reasons[i];
         if(reason instanceof DeoptimizationReason) {
-            out += (reason + "") + "\n";
+            out += (reason + "");
         }
         else {
-            out += "(Could not find code in disassembly, bailout position: " + reason + ")\n";
+            out += "(Could not find code in disassembly, bailout position: " + reason + ")";
+        }
+        if( i < len - 1 ) {
+            out += "\n";
         }
         ret += out;
     }

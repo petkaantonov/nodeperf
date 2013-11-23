@@ -104,3 +104,25 @@ var l = count / 5;
 while(l--) {
     MissingInlineOpportunities(2);
 }
+
+//Function redefinition abuse
+function redefinitionAbuse() {
+    var a = new ClosureClass();
+    a.setAge(5);
+    return a.getAge();
+}
+
+function ClosureClass() {
+    var age = 3;
+    this.getAge = function() {
+        return age;
+    };
+    this.setAge = function(_age) {
+        age = _age;
+    }
+}
+
+var l = count / 5;
+while(l--) {
+    redefinitionAbuse();
+}

@@ -3,9 +3,9 @@
 Example:
 
     $ nodex64 ./src/run.js test.js
-    In total 46 (8 unique) optimizations were done taking 0.74 seconds of compiler time.
+    In total 50 (10 unique) optimizations were done taking 0.80 seconds of compiler time.
 
-    Found 7 issues.
+    Found 11 issues.
 
     Critical (3):
 
@@ -17,7 +17,7 @@ Example:
         - Function `disabled` cannot be optimized because it contains a switch-statement that has case clauses that are either not integer literals or string literals
         - Function `doPhase` cannot be optimized because it has been reoptimized too many times.
 
-    High (2):
+    High (6):
 
         - Function `THISISTHEFUNCTION` was hard deoptimized 4 times:
             1. At bailout position 14 an assumption failed: Expected a value not to be an integer. (check-non-smi)
@@ -26,6 +26,11 @@ Example:
             4. At bailout position 1 an assumption failed: Expected numeric property access not to be made out of bounds. (bounds-check)
 
         - The small function `noInline2` when called from the function `MissingInlineOpportunities` cannot be inlined because the former creates closures.
+        - The small function `ClosureClass` when called from the function `redefinitionAbuse` cannot be inlined because the former creates closures.
+        - The small function `redefinitionAbuse` when called from the function `[anonymous]` cannot be inlined because they do not share the same scope.
+
+        - The function `ClosureClass.setAge` was re-defined at least 152 times.
+        - The function `ClosureClass.getAge` was re-defined at least 152 times.
 
     Medium (2):
 
@@ -33,5 +38,7 @@ Example:
         - The function `[anonymous]` when called from the function `[anonymous]` cannot be inlined because they do not share the same scope.
 
     Low (0):
+
+
 
 
