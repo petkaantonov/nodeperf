@@ -1,0 +1,22 @@
+{
+  "name": "nodeperf",
+  "version": "0.0.0",
+  "description": "Node runtime performance analyser",
+  "main": "./src/run.js",
+  "scripts": {
+    "test": "echo 'no test'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/petkaantonov/nodeperf.git"
+  },
+  "keywords": [
+    "performance"
+  ],
+  "author": "Petka Antonov <petka_antonov@hotmail.com> (https://github.com/petkaantonov/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/petkaantonov/nodeperf/issues"
+  },
+  "homepage": "https://github.com/petkaantonov/nodeperf"
+}
