@@ -6,7 +6,7 @@ var optimizationMap = Object.create(null);
 
 function Optimization() {
     this.constructor$();
-    this.linePattern = /^\[optimizing [a-fA-F0-9]{1,16} <JS Function ([^ ]*) \(SharedFunctionInfo ([a-fA-F0-9]{1,16})\)> - took ([^\]]+)\]$/;
+    this.linePattern = /^\[optimizing (?:0[xX])?[a-fA-F0-9]{1,16} <JS Function ([^ ]*) \(SharedFunctionInfo (?:0[xX])?([a-fA-F0-9]{1,16})\)> - took ([^\]]+)\]$/;
 }
 inherits(Optimization, Pass);
 module.exports = Optimization;

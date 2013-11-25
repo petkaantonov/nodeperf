@@ -67,7 +67,7 @@ var jumps =
     "|jna|ja|jnbe|jl|jnge|jge|jnl|jle|jng|jg|jnle|jp|jpe|jnp|" +
     "jpo|jcxz|jecxz)";
 
-var rinstructionpos = /^[a-fA-F0-9]{1,16}\s*(\d+)/;
+var rinstructionpos = /^(?:0[xX])?[a-fA-F0-9]{1,16}\s*(\d+)/;
 var rinstructioncomment = /^;;; <@\d+,#\d+> ([^\n]+)/;
 DeoptimizesAlot.prototype.beforeOutput = function DeoptimizesAlot$beforeOutput(analysis) {
     var output = analysis.getOutput();
@@ -113,7 +113,7 @@ DeoptimizesAlot.prototype.beforeOutput = function DeoptimizesAlot$beforeOutput(a
         var matches = rinstructionpos.exec(line);
 
         if (!matches) {
-            throw new Error("disassembler output doesn't match expectations");
+            throw new Error("disassembler output doesn't match expectations (Instruction address format)");
         }
         var instructionPosition = matches[1];
         var rjump = new RegExp(jumps + " " + instructionPosition, "i");

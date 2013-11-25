@@ -11,7 +11,7 @@ var shortFunctionMap = Object.create(null);
 
 function ShortFunction() {
     this.constructor$();
-    this.linePattern = /^\[marking [a-zA-Z0-9]{1,16} <JS Function ([^ ]*) \(SharedFunctionInfo [a-zA-Z0-9]{1,16}\)> for recompilation, reason: small function/;
+    this.linePattern = /^\[marking (?:0[xX])?[a-zA-Z0-9]{1,16} <JS Function ([^ ]*) \(SharedFunctionInfo (?:0[xX])?[a-zA-Z0-9]{1,16}\)> for recompilation, reason: small function/;
 }
 inherits(ShortFunction, Pass);
 module.exports = ShortFunction;

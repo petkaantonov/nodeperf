@@ -5,7 +5,7 @@ var DisabledOptimization = require("../issues/disabled_optimization.js");
 
 function UnoptimizableFunctions() {
     this.constructor$();
-    this.linePattern = /^\[disabled optimization for [a-zA-Z0-9]{1,16} <SharedFunctionInfo ([^>]*)>, reason: ([^\]]+)\]$/;
+    this.linePattern = /^\[disabled optimization for (?:0[xX])?[a-zA-Z0-9]{1,16} <SharedFunctionInfo ?([^>]*)>, reason: ([^\]]+)\]$/;
 }
 inherits(UnoptimizableFunctions, Pass);
 module.exports = UnoptimizableFunctions;

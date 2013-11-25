@@ -7,7 +7,7 @@ var functionMap = Object.create(null);
 
 function MultipleFunctionIdentities() {
     this.constructor$();
-    this.linePattern = /([a-fA-F0-9]{1,16}) <JS Function ([^ ]*) \(SharedFunctionInfo ([a-fA-F0-9]{1,16})\)>/;
+    this.linePattern = /(?:0[xX])?([a-fA-F0-9]{1,16}) <JS Function ([^ ]*) \(SharedFunctionInfo (?:0[xX])?([a-fA-F0-9]{1,16})\)>/;
 }
 
 inherits(MultipleFunctionIdentities, Pass);
